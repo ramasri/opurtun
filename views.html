@@ -1,0 +1,34 @@
+<div ng-controller="viewListCtrl">
+	<h1>Address Book</h1>
+	 <center>
+	      <button ng-click="ShowForm()" ng-hide="formVisibility "> Add Contact</button>
+
+	</center>
+	 <div ng-show="formVisibility " class="wrapper">
+		 <h2>Add a Contact</h2>
+		 FirstName: <input type="text" ng-model="newPerson.fname"></input>
+		 LastName: <input type="text" ng-model="newPerson.lname"></input><br><br>
+		 Phone: <input type="text" ng-model="newPerson.phone"></input>
+		 Email: <input type="text" ng-model="newPerson.email"></input><br><br>
+		 <button ng-click="Save()">Save</button>
+	 </div><br><br>
+	 <div class="wrapper list_data">
+	 	<table border="1" width="100%">
+			<tr>
+				<th ng-click="orderByMe('fname')">FirstName</th>
+				<th>LastName</th>
+				<th>Email</th>
+				<th>Phone No.</th>
+				 <th></th>
+			</tr>
+				<tr ng-repeat="person in people | orderBy:myOrderBy">
+				<td>{{person.fname}}</td>
+				<td>{{person.lname}}</td>
+				<td>{{person.email}}</td>
+				<td>{{person.phone}}</td>
+				<td><button ng-click="Delete($index)">Delete</button> </td>
+			</tr>
+		</table>
+		<button ng-show="history.length > 0" ng-click="Undo()">Undo Delete</button>
+	</div> 
+</div>

@@ -1,0 +1,54 @@
+<br>
+<div class="vertical-middle">
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Contact Form</h2>
+            </div>
+            <div ng-controller="contactController" class="panel-body">
+                <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate class="form-horizontal"> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+                    <!-- FIRST NAME -->
+                    <div class="form-group">
+                        <label class="col-lg-2">First Name</label>
+                        <div class="col-lg-10" ng-class="&#123; 'has-error' : userForm.name.$touched && userForm.name.$invalid && !userForm.name.$pristine && submitted }">
+                        <input type="text" name="fname" class="form-control" ng-model="fname" required placeholder="First name.">
+                        <p ng-show="userForm.fname.$invalid && !userForm.fname.$pristine" class="help-block">First name is required.</p>
+                    </div>
+                    </div>
+                    <!-- LAST NAME -->
+                    <div class="form-group">
+                        <label class="col-lg-2">Last Name</label>
+                        <div class="col-lg-10">
+                        <input type="text" name="lname" class="form-control" ng-model="lname" required placeholder="Last name">
+                        <p ng-show="userForm.lname.$invalid && !userForm.lname.$pristine" class="help-block">Last name is required.</p>
+                    </div>
+                    </div>
+                    
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                        <label class="col-lg-2">Email</label>
+                        <div class="col-lg-10">
+                        <input type="email" name="email" class="form-control" ng-pattern="word" ng-model="email" required placeholder="Email">
+                        <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+
+                    </div>
+                    </div>
+                    <!-- Contact -->
+                    <div class="form-group">
+                        <label class="col-lg-2">Contact No.</label>
+                        <div class="col-lg-10">
+                        <input type="text" ng-if='requireTel' ng-pattern="phoneNumbr" name="phone" class="form-control" ng-model="phone" required placeholder="phone no.">
+                        <p ng-show="userForm.phone.$invalid && !userForm.phone.$pristine" class="help-block">Enter a valid contact no..</p>
+                    </div>
+                    </div>
+                    
+                    <!-- SUBMIT BUTTON -->
+                    <button type="submit"  ng-click="Save()" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
